@@ -135,10 +135,13 @@ const getCommentsList = async (id) => {
   const comments = (
     await database.ref(`postsList/${id}/comments`).once("value")
   ).val();
+
   const arrComments = [];
-  Object.keys(comments).forEach(async (key) => {
-    arrComments.push({ [key]: { ...comments[key], id: key } });
-  });
+  if (comments) {
+    Object.keys(comments).forEach(async (key) => {
+      arrComments.push({ [key]: { ...comments[key], id: key } });
+    });
+  }
 
   return [arrComments];
 };

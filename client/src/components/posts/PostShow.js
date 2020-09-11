@@ -32,22 +32,20 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
   if (!postSelected.img) {
     postSelected.img = pic;
   }
-
   const getComments = async () => {
     server
       .get(`/comments/${postSelected.id}`)
       .then((res) => setComments([...res.data[0]]));
   };
-
-  const getPostSelected = async (id) => {
-    server
-      .get(`/post/${id}`)
-      .then((res) => setPostSelected({ ...res.data, id: id }));
-  };
-
   useEffect(() => {
+    const getPostSelected = async (id) => {
+      server.get(`/post/${id}`).then((res) => {
+        setPostSelected({ ...res.data, id: id });
+      });
+      getComments();
+    };
+
     getPostSelected(postSelected.id);
-    getComments();
   }, [postSelected.id]);
 
   const renderIfLogin = () => {
@@ -116,7 +114,7 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
           <CommentsList
             idPost={postSelected.id}
             comments={comments}
-            getComments={() => getComments()}
+            // getComments={() => getComments()}
           />
         </div>
       </div>
