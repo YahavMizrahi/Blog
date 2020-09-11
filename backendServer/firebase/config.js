@@ -119,6 +119,19 @@ const deletePostDB = async (id) => {
   }
 };
 
+const addCommentToPost = async (comment) => {
+  try {
+    console.log(comment);
+    database
+      .ref(`postsList/${comment.idPost}/comments/`)
+      .push({ ...comment.newComment });
+    return true;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
 module.exports = {
   signUpDB,
   createPostDB,
@@ -127,4 +140,5 @@ module.exports = {
   getPost,
   deletePostDB,
   updatePostDB,
+  addCommentToPost,
 };

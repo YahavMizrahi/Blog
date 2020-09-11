@@ -10,6 +10,7 @@ const bodyParser = require("body-parser"),
     getPost,
     deletePostDB,
     updatePostDB,
+    addCommentToPost,
   } = require("./firebase/config");
 
 const multer = require("multer");
@@ -127,6 +128,8 @@ app.get("/posts", (req, res) => {
     return res;
   });
 });
+
+//delete post
 app.post("/delete/:id", (req, res) => {
   const id = req.params.id;
   deletePostDB(id).then((response) => {
@@ -138,6 +141,22 @@ app.post("/delete/:id", (req, res) => {
     console.log("POST DELETED FROM FIREBASE REALTIME");
     res.send(response);
     return true;
+  });
+});
+
+//add comment to post
+app.post("/addComment", (req, res) => {
+  const comment = req.body;
+  console.log(12341234231, comment);
+  addCommentToPost(comment).then((response) => {
+    if (!response) {
+      console.log("Error adding comment");
+      res.status("404").send("Error adding comment");
+      return false;
+    }
+    console.log("comment ADDED TO FIREBASE REALTIME");
+    res.send(response);
+    return comment;
   });
 });
 
