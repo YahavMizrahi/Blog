@@ -121,7 +121,6 @@ const deletePostDB = async (id) => {
 
 const addCommentToPost = async (comment) => {
   try {
-    console.log(comment);
     database
       .ref(`postsList/${comment.idPost}/comments/`)
       .push({ ...comment.newComment });
@@ -130,6 +129,18 @@ const addCommentToPost = async (comment) => {
     console.log(e);
     return null;
   }
+};
+
+const getCommentsList = async (id) => {
+  const comments = (
+    await database.ref(`postsList/${id}/comments`).once("value")
+  ).val();
+  const arrComments = [];
+  Object.keys(comments).forEach(async (key) => {
+    arrComments.push({ [key]: { ...comments[key], id: key } });
+  });
+
+  return [arrComments];
 };
 
 module.exports = {
@@ -141,4 +152,5 @@ module.exports = {
   deletePostDB,
   updatePostDB,
   addCommentToPost,
+  getCommentsList,
 };

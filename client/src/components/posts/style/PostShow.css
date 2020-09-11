@@ -45,7 +45,7 @@
   overflow-x: auto;
 }
 
-.container-likes-postShow {
+.container-comment-postShow {
   display: flex;
   flex-wrap: wrap;
   margin-top: 1vh;
@@ -53,6 +53,8 @@
   padding-right: 5px;
   margin-left: 25%;
   margin-right: 25%;
+  margin-bottom: 50px;
+  padding: 20px;
   background-color: rgb(255, 255, 255);
   border: solid 6px rgba(114, 114, 114, 0.212);
   border-radius: 0 0px 5vh;
@@ -64,6 +66,7 @@
   color: #01388b;
   cursor: pointer;
   margin-top: 7px;
+  width: 100%;
 }
 .btn-postshow {
   display: flex;
@@ -128,10 +131,11 @@
 }
 
 .add-comment {
-  width: 25vh;
+  max-width: 100%;
   letter-spacing: 2px;
   font-size: 1rem;
   margin-left: auto;
+  float: right;
   padding: 0.5rem 1.8rem;
   background: #01388b;
   color: #fff;
@@ -139,6 +143,12 @@
   outline: none;
   cursor: pointer;
   margin: 10px;
+}
+.input-addComment {
+  resize: none;
+  width: 100%;
+  height: 7vh;
+  overflow-y: auto;
 }
 
 .text-post {
@@ -149,6 +159,23 @@
   letter-spacing: 1px;
   margin: 10px;
 }
+
+.comments-list {
+  max-height: 30vh;
+  overflow-y: auto;
+  width: 100%;
+}
+.comments-list::-webkit-scrollbar {
+  box-shadow: inset 0 0 8px rgb(0, 0, 0);
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 217, 0, 0.712);
+}
+.comments-list::-webkit-scrollbar-thumb:hover {
+  background: gold;
+}
+
 @media (max-width: 770px) {
   .container-postShow {
     margin-left: 2%;
@@ -156,7 +183,7 @@
     padding-left: 2px;
     padding-right: 2px;
   }
-  .container-likes-postShow {
+  .container-comment-postShow {
     display: flex;
     flex-wrap: wrap;
     margin-left: 2%;

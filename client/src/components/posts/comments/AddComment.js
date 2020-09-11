@@ -3,12 +3,13 @@ import { server } from "../../../apis/server";
 
 // import "./style/Comment.css";
 
-const AddComment = ({ idPost }) => {
+const AddComment = ({ idPost, getComments }) => {
   const [newComment, setNewComment] = useState({
     comment: "",
     time: new Date().toLocaleString(),
     ...JSON.parse(localStorage.getItem("whoSignIn")),
   });
+
   const onSubmit = (event) => {
     event.preventDefault();
     createComment(newComment, idPost);
@@ -26,15 +27,13 @@ const AddComment = ({ idPost }) => {
       ...newComment,
       [name]: value,
     });
-
-    console.log("chage");
   };
 
-  const createComment = async (newComment, id) => {
+  const createComment = async (newComment) => {
     await server.post("/addComment", { newComment, idPost }).then(
       (response) => {
         if (response) {
-          console.log("comment to post added successfully");
+          getComments();
         }
       },
       (error) => {
@@ -45,15 +44,17 @@ const AddComment = ({ idPost }) => {
 
   return (
     <div>
-      {console.log(newComment)}
       <form
         onSubmit={(event) => onSubmit(event)}
         onChange={(event) => changeHandler(event)}
       >
         <textarea
+          className="input-addComment"
           name="comment"
+          type="text"
           value={newComment.comment}
           placeholder="Add Comment..."
+          onChange={(event) => changeHandler(event)}
         ></textarea>
         <button type="submit" className="add-comment">
           Add Comment

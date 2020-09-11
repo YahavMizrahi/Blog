@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { server } from "../../apis/server";
 
 import AddComment from "./comments/AddComment";
+import CommentsList from "./comments/CommentsList";
 import PostDelete from "./PostDelete";
 
 import "./style/PostShow.css";
@@ -23,12 +24,21 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
     id: match.params.id,
   });
 
+  const [comments, setComments] = useState([]);
+
   const [showDeleteModal, setShowModal] = useState(false);
 
   var pic = require("../Navbar/blacklogo.png");
   if (!postSelected.img) {
     postSelected.img = pic;
   }
+
+  const getComments = async () => {
+    server
+      .get(`/comments/${postSelected.id}`)
+      .then((res) => setComments([...res.data[0]]));
+  };
+
   const getPostSelected = async (id) => {
     server
       .get(`/post/${id}`)
@@ -37,13 +47,14 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
 
   useEffect(() => {
     getPostSelected(postSelected.id);
-  }, []);
+    getComments();
+  }, [postSelected.id]);
 
   const renderIfLogin = () => {
     if (isSignedIn) {
       return (
         <div className="like-wrap">
-          <AddComment idPost={postSelected.id} />
+          <AddComment getComments={getComments} idPost={postSelected.id} />
 
           <span style={{ fontSize: "13px" }}> 1</span>
           <FontAwesomeIcon className="like-icon" icon={faThumbsUp} />
@@ -99,7 +110,17 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
         {renderIfUserAdmin()}
       </div>
 
-      <div className="container-likes-postShow">{renderIfLogin()}</div>
+      <div className="container-comment-postShow">
+        {renderIfLogin()}{" "}
+        <div className="comments-list">
+          <CommentsList
+            idPost={postSelected.id}
+            comments={comments}
+            getComments={() => getComments()}
+          />
+        </div>
+      </div>
+
       {showDeleteModal ? (
         <div className="dledteModal">
           <div className="back-drop" onClick={closeModalHandler}></div>

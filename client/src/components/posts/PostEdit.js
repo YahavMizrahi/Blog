@@ -22,7 +22,7 @@ const PostEdit = ({ match }) => {
 
   useEffect(() => {
     getPostSelected(postSelectedToedit.id);
-  }, []);
+  }, [postSelectedToedit.id]);
   const convertImagFileToBase64 = (imagefile) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
