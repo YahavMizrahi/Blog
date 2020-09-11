@@ -1,0 +1,86 @@
+.modal-wrapper {
+  background: #fff;
+  width: 100%;
+  max-width: 800px;
+  margin: 4rem auto;
+  transition: all 0.7s ease;
+  position: absolute;
+  float: left;
+  left: -25%;
+  right: -25%;
+  top: 25%;
+  height: "100vh";
+  position: fixed;
+}
+
+.modal-header {
+  background: gold;
+  color: rgb(1, 1, 63);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header span {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-content {
+  padding: 1rem 1rem;
+}
+
+.modal-body {
+  margin-bottom: 1rem;
+}
+
+.modal-body h4 {
+  font-size: 1.6rem;
+}
+
+.modal-body .p {
+  font-size: 1.2rem;
+  background: rgba(114, 114, 114, 0.212);
+  color: #333;
+  padding: 1rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.modal-footer button {
+  width: 25vh;
+  font-weight: 550;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  margin-left: auto;
+  padding: 0.5rem 1.8rem;
+  background: #01388b;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.back-drop {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.568);
+  transition: all 1.3s;
+}
+@media (max-width: 770px) {
+  .modal-footer {
+    display: grid;
+    grid-template-rows: auto auto;
+    /* width: 100vh; */
+  }
+}

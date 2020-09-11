@@ -1,0 +1,63 @@
+.navbar {
+  margin: 0px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  background: whitesmoke;
+  box-sizing: inherit;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.521);
+  /* background-image: url(https://media.istockphoto.com/photos/blue-abstract-background-or-texture-picture-id1138395421?k=6&m=1138395421&s=612x612&w=0&h=bJ1SRWujCgg3QWzkGPgaRiArNYohPl7-Wc4p_Fa_cyA=); */
+  height: 56px;
+  font-size: 22px;
+}
+
+.blog-logo {
+  height: 45px;
+  margin-left: 10px;
+  padding: 0.5rem;
+  background: #333;
+}
+.navbar__navigation {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 0 0.8rem;
+}
+
+.item {
+  color: #333;
+  text-decoration: none;
+  padding: 0.8rem;
+}
+
+.item:hover,
+.item:active {
+  background: gold;
+  color: #333;
+}
+
+.navbar__navigation-right-items {
+  margin-left: auto;
+  margin-right: 2rem;
+  position: relative;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar__navigation-right-items,
+  .navbar__navigation-left-items {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .navbar__toggle-button {
+    display: none;
+  }
+  .blog-logo {
+    margin-left: 0;
+  }
+}

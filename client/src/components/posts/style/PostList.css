@@ -1,0 +1,72 @@
+.add-btn {
+  border: none;
+  background: gold;
+  color: rgb(1, 1, 63);
+  text-decoration: none;
+  font-weight: 100;
+  padding: 20px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  transition: all 0.3s ease 0s;
+  width: 220px;
+  text-align: center;
+}
+.container {
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+
+.add-btn:hover {
+  background: rgb(1, 1, 63);
+  color: gold;
+  font-weight: 700;
+  letter-spacing: 4px;
+  transition: all 0.4s ease 0s;
+}
+.btn-container {
+  display: grid;
+  grid-template-columns: auto;
+  justify-items: center;
+  align-items: center;
+  margin: 5px;
+  padding: 3px;
+}
+
+.listpost-container {
+  max-height: 75vh;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  border: rgb(161, 161, 161) 6px;
+  border-style: double;
+  background-color: whitesmoke;
+  padding: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.listpost-container::-webkit-scrollbar {
+  box-shadow: inset 0 0 8px rgb(0, 0, 0);
+  border-radius: 10vh;
+  height: 20vh;
+}
+
+.listpost-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 217, 0, 0.712);
+  border-radius: 10px;
+}
+.listpost-container::-webkit-scrollbar-thumb:hover {
+  background: gold;
+}
+
+@media (max-width: 800px) {
+  .listpost-container {
+    display: grid;
+    grid-template-columns: auto;
+    height: 77vh;
+    overflow: auto;
+    margin: 10px;
+    padding: 10px;
+  }
+}

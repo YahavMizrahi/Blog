@@ -1,0 +1,102 @@
+.post-input {
+  height: 400px;
+  min-width: 60%;
+  max-width: 60%;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.856);
+  border: solid 2px #333;
+  border-radius: 7px;
+  font-size: 16px;
+}
+.labelNamePost {
+  color: #333;
+  font-size: 20px;
+  margin-right: 3rem;
+}
+.field-input-post {
+  border: none;
+  width: 40%;
+  font-size: 20px;
+  border-bottom: 2px solid #01388b;
+  background: none;
+  color: #333;
+}
+.create-post-title {
+  font-size: 40px;
+  text-align: center;
+  padding: 20px;
+  color: #333;
+  width: 50%;
+  margin: auto;
+  border-radius: 20vh;
+}
+.btn-post {
+  width: 25vh;
+  font-weight: 550;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  margin-left: auto;
+  padding: 0.5rem 1.8rem;
+  background: #01388b;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.blue-border-post:hover {
+  background-color: #333;
+  color: gold;
+  border: solid 1px #01388b;
+}
+.blue-background-post:hover {
+  background-color: #01388b;
+  color: gold;
+  border: solid 1px #333;
+}
+
+.file-input {
+  font-size: 20px;
+  font-weight: 200;
+  width: 250px;
+  color: #fff;
+  background-color: #01388b;
+  display: inline-block;
+}
+
+.add-container-grid {
+  width: 100%;
+  text-align: center;
+}
+
+.grid-form {
+  width: 70%;
+  padding: 20px;
+  display: grid;
+  grid-auto-columns: auto;
+  border: rgb(161, 161, 161) 6px;
+  border-style: double;
+  text-align: center;
+  background-color: whitesmoke;
+}
+.form-item-post {
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .post-input {
+    max-width: 250px;
+    height: 30vh;
+    width: 90%;
+  }
+
+  .grid-form {
+    width: 80%;
+    display: grid;
+    grid-auto-columns: auto;
+    border: rgb(161, 161, 161) 6px;
+    border-style: double;
+    text-align: center;
+    background-color: whitesmoke;
+  }
+}
