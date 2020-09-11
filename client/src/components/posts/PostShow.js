@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { server } from "../../apis/server";
 
-import CommentForm from "./CommentForm";
+import AddComment from "./comments/AddComment";
 import PostDelete from "./PostDelete";
 
 import "./style/PostShow.css";
@@ -43,7 +43,7 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
     if (isSignedIn) {
       return (
         <div className="like-wrap">
-          <CommentForm />
+          <AddComment idPost={postSelected.id} />
 
           <span style={{ fontSize: "13px" }}> 1</span>
           <FontAwesomeIcon className="like-icon" icon={faThumbsUp} />
