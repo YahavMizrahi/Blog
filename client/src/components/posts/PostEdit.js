@@ -20,7 +20,7 @@ const PostEdit = ({
   });
 
   const userDetails = JSON.parse(localStorage.getItem("whoSignIn"));
-  if (!userDetails || userDetails !== postSelectedToedit.author)
+  if (!userDetails || userDetails === postSelectedToedit.author)
     history.push(`/blog/post/${postSelectedToedit.id}`);
 
   const getPostSelected = useCallback(() => {

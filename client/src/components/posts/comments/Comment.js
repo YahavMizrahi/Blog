@@ -53,7 +53,7 @@ const Comment = ({
         <div style={{ fontSize: "12px" }}>{time}</div>
       </div>
 
-      <div style={{ wordBreak: "break-all", fontSize: "16px" }}>{comment}</div>
+      <div style={{ wordBreak: "break-word", fontSize: "16px" }}>{comment}</div>
       {renderIfUserAdmin()}
     </div>
   );
