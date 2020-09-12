@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { server } from "../../apis/server";
+import history from "../../history";
 
 import AddComment from "./comments/AddComment";
 import CommentsList from "./comments/CommentsList";
@@ -32,21 +33,24 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
   if (!postSelected.img) {
     postSelected.img = pic;
   }
-  const getComments = async () => {
+  const getComments = useCallback(() => {
     server
       .get(`/comments/${postSelected.id}`)
       .then((res) => setComments([...res.data[0]]));
-  };
-  useEffect(() => {
-    const getPostSelected = async (id) => {
-      server.get(`/post/${id}`).then((res) => {
-        setPostSelected({ ...res.data, id: id });
-      });
-      getComments();
-    };
-
-    getPostSelected(postSelected.id);
   }, [postSelected.id]);
+  const getPostSelected = useCallback(() => {
+    server.get(`/post/${postSelected.id}`).then((res) => {
+      if (!res.data) history.push("/blog/posts");
+      else {
+        setPostSelected({ ...res.data, id: postSelected.id });
+        getComments();
+      }
+    });
+  }, [getComments, setPostSelected, postSelected.id]);
+
+  useEffect(() => {
+    getPostSelected();
+  }, [getPostSelected, getComments]);
 
   const renderIfLogin = () => {
     if (isSignedIn) {
@@ -114,7 +118,7 @@ const PostShow = ({ match, isSignedIn, userDetails }) => {
           <CommentsList
             idPost={postSelected.id}
             comments={comments}
-            // getComments={() => getComments()}
+            getComments={getComments}
           />
         </div>
       </div>

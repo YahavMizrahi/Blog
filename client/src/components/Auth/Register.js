@@ -135,7 +135,9 @@ const Register = (props) => {
 
     return valid;
   };
+  const userDetails = JSON.parse(localStorage.getItem("whoSignIn"));
 
+  if (userDetails) return <div>You are already logged in</div>;
   return (
     <div>
       <h2 className="header-form">CREATE ACOUNT</h2>

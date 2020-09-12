@@ -1,28 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PostForm from "./PostForm";
 import { server } from "../../apis/server";
 import history from "../../history";
-
-const PostEdit = ({ match }) => {
+const details = {
+  author: "",
+  time: "",
+  img: "",
+  post: "",
+  title: "",
+  id: "",
+};
+const PostEdit = ({
+  match: {
+    params: { id },
+  },
+}) => {
   const [postSelectedToedit, setPostSelected] = useState({
-    author: "",
-    time: "",
-    img: "",
-    post: "",
-    title: "",
-    id: match.params.id,
+    ...details,
   });
+
   const userDetails = JSON.parse(localStorage.getItem("whoSignIn"));
-  if (!userDetails) history.push(`/blog/post/${postSelectedToedit.id}`);
-  const getPostSelected = async (id) => {
-    server
-      .get(`/post/${id}`)
-      .then((res) => setPostSelected({ ...res.data, id: id }));
-  };
+  if (!userDetails || userDetails !== postSelectedToedit.author)
+    history.push(`/blog/post/${postSelectedToedit.id}`);
+
+  const getPostSelected = useCallback(() => {
+    server.get(`/post/${id}`).then((res) => {
+      !res.data
+        ? history.push("/blog/posts")
+        : setPostSelected({ ...res.data, id: id });
+    });
+  }, [setPostSelected, id]);
 
   useEffect(() => {
-    getPostSelected(postSelectedToedit.id);
-  }, [postSelectedToedit.id]);
+    getPostSelected();
+  }, [getPostSelected]);
+
   const convertImagFileToBase64 = (imagefile) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -54,7 +66,6 @@ const PostEdit = ({ match }) => {
 
   const clickOnSubmit = (formValue) => {
     formValue.preventDefault();
-    console.log(1, postSelectedToedit);
     editPost({ ...postSelectedToedit });
   };
 

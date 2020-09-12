@@ -34,13 +34,13 @@ const App = () => {
         <SideDrawer show={sideDrawerOpen} />
         {backdrop}
         <Switch>
-          <Redirect exact from="/" to="/blog/posts" />
           <Route path="/blog/posts" exact component={PostsList} />
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="/blog/newPost" exact component={PostAdd} />
           <Route path="/blog/post/edit/:id" exact component={PostEdit} />
-          <Route path="/blog/post/:id" exact component={PostShow} />s
+          <Route path="/blog/post/:id" exact component={PostShow} />
+          <Redirect exact from="" to="/blog/posts" />
         </Switch>
       </div>
     </Router>

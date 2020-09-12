@@ -12,6 +12,7 @@ const bodyParser = require("body-parser"),
     updatePostDB,
     addCommentToPost,
     getCommentsList,
+    deleteCommentDB,
   } = require("./firebase/config");
 
 const multer = require("multer");
@@ -109,7 +110,8 @@ app.get("/post/:id", (req, res) => {
   getPost(id).then((response) => {
     if (!response) {
       console.log("Error get post");
-      response.status("404").send("Error adding post");
+      // res.status(404).send("Post not found");
+      res.send(false);
       return false;
     }
     res.send(response);
@@ -171,6 +173,20 @@ app.get("/comments/:id", (req, res) => {
 
     res.send(response);
     return res;
+  });
+});
+
+app.post("/deleteComment/:postid/:commentid", (req, res) => {
+  const id = req.params;
+  deleteCommentDB(id.postid, id.commentid).then((response) => {
+    if (!response) {
+      console.log("Error delete comment");
+      res.status("404").send("Error delete comment");
+      return false;
+    }
+    console.log("COMMENT DELETED FROM FIREBASE REALTIME");
+    res.send(response);
+    return true;
   });
 });
 

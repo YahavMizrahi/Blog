@@ -43,6 +43,9 @@ function Login({ signIn }) {
     event.target[1].value = "";
   };
 
+  const userDetails = JSON.parse(localStorage.getItem("whoSignIn"));
+
+  if (userDetails) return <div>You are already logged in</div>;
   return (
     <div>
       <h2 className="header-form">SIGN IN</h2>

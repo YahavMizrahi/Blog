@@ -106,6 +106,7 @@ const getPostsList = async () => {
 
 const getPost = async (id) => {
   const post = (await database.ref(`postsList/${id}`).once("value")).val();
+  // if (post) return false;
   return post;
 };
 
@@ -146,6 +147,16 @@ const getCommentsList = async (id) => {
   return [arrComments];
 };
 
+const deleteCommentDB = async (postid, commentid) => {
+  try {
+    database.ref(`postsList/${postid}/comments/${commentid}`).remove();
+    return true;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
 module.exports = {
   signUpDB,
   createPostDB,
@@ -156,4 +167,5 @@ module.exports = {
   updatePostDB,
   addCommentToPost,
   getCommentsList,
+  deleteCommentDB,
 };
