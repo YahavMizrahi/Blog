@@ -5,16 +5,7 @@ const firebase = require("firebase/app");
 require("firebase/storage");
 require("firebase/database");
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBiDcKvMdKbfcgpcgpAsH3r8ADqQb9DFLs",
-  authDomain: "blog-reactapp.firebaseapp.com",
-  databaseURL: "https://blog-reactapp.firebaseio.com",
-  projectId: "blog-reactapp",
-  storageBucket: "blog-reactapp.appspot.com",
-  messagingSenderId: "576979884487",
-  appId: "1:576979884487:web:c7167148ccca30b89ba1e2",
-  measurementId: "G-DQG5TGJZCL",
-};
+const firebaseConfig = `${process.env.FIREBASE_CONFIG}`;
 
 //initial the database
 firebase.initializeApp(firebaseConfig);
