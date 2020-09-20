@@ -27,13 +27,13 @@ node index.js
 // Your local app should be available at http://localhost:3005
 ```
 ### NPM Packages
--react
--react-dom
--react-router
--react-router-dom
--react-redux
--redux
--axios
+- react
+- react-dom
+- react-router
+- react-router-dom
+- react-redux
+- redux
+- axios
 - express
 
 
