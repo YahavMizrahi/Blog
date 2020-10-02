@@ -15,6 +15,16 @@ const firebaseConfig = {
   appId: "1:576979884487:web:c7167148ccca30b89ba1e2",
   measurementId: "G-DQG5TGJZCL",
 };
+
+//   apiKey: process.env.API_KEY,
+//   authDomain: process.env.AUTH_DOMAIN,
+//   databaseURL: process.env.DB_URL,
+//   projectId: process.env.PROJECT_ID,
+//   storageBucket: process.env.STORAGE_BUCKET,
+//   messagingSenderId: process.env.MESSAGING_SENDER_ID,
+//   appId: process.env.APP_ID,
+//   measurementId: process.env.MEASURE_ID,
+// };
 // `${process.env.FIREBASE_CONFIG}`;
 
 //initial the database
